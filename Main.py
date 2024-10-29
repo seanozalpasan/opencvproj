@@ -4,7 +4,6 @@ import face_recognition
 import pandas
 import time
 
-# Use default camera
 cap = cv.VideoCapture(0)
 
 process_this_frame = True
@@ -37,8 +36,19 @@ def process_frame(frame, scale_factor=0.25):
     for top, right, bottom, left in scaled_face_locations:
         cv.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
     
+    # Add counter in bottom left
+    num_faces = len(scaled_face_locations)
+    # Create dark background for text
+    cv.rectangle(frame, (10, frame.shape[0]-60), (200, frame.shape[0]-20), (0, 0, 0), -1)
+    # Add text showing number of people
+    cv.putText(frame, f'FACES DETECTED: {num_faces}', 
+              (20, frame.shape[0]-35),  # position
+              cv.FONT_HERSHEY_SIMPLEX,  # font
+              0.7,  # font scale
+              (255, 255, 255),  # color (white)
+              2)  # thickness
+    
     return frame
-
 
 while cap.isOpened():
     ret, frame = cap.read()
