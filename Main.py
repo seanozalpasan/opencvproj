@@ -16,4 +16,3 @@ while(cap.isOpened()):
 
 cap.release()
 cv.destroyAllWindows()
-#cool comment
