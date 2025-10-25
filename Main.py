@@ -14,7 +14,6 @@ def process_frame(frame, scale_factor=0.25):
     # Resize frame for faster face detection
     small_frame = cv.resize(frame, (0, 0), fx=scale_factor, fy=scale_factor)
     
-    # Convert BGR to RGB
     rgb_small_frame = small_frame[:, :, ::-1]
     
     # Find face locations in the small frame
